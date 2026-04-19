@@ -1,0 +1,15 @@
+Админ:
+admin@matye.local
+Admin123!
+
+Клиент:
+client@matye.local
+Client123!
+
+Модератор:
+mod@matye.local
+Mod123!
+
+Матсер:
+master@matye.local
+Master123!
