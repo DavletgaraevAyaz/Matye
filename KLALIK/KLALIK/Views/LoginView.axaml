@@ -1,8 +1,15 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="KLALIK.Views.LoginView">
-  <ScrollViewer>
-    <StackPanel Margin="32" Spacing="14" MaxWidth="480" HorizontalAlignment="Left">
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+    <Grid MinHeight="640">
+      <StackPanel VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Margin="32"
+                  Spacing="14"
+                  MaxWidth="480"
+                  Width="420">
       <TextBlock Text="Вход"
                  FontSize="24"
                  FontWeight="SemiBold"
@@ -25,6 +32,7 @@
                  Foreground="{DynamicResource BrushError}"
                  TextWrapping="Wrap"
                  IsVisible="False" />
-    </StackPanel>
+      </StackPanel>
+    </Grid>
   </ScrollViewer>
 </UserControl>

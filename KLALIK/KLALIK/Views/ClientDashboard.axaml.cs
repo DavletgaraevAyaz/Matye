@@ -20,6 +20,15 @@ public partial class ClientDashboard : UserControl
     private readonly AuthSession _authSession;
     private readonly Action _logout;
     private bool _catalogEventsHooked;
+    private bool _catalogIsCustomizationTab;
+
+    private enum MainClientView
+    {
+        Catalog,
+        Bookings,
+        Review,
+        MyReviews
+    }
 
     public ClientDashboard(Window hostWindow, IDbContextFactory<AppDbContext> dbFactory, AuthSession authSession,
         Action refreshShell, Action logout)
@@ -35,7 +44,48 @@ public partial class ClientDashboard : UserControl
         RefreshButton.Click += (_, _) => _ = LoadAsync();
         SubmitReviewButton.Click += async (_, _) => await SubmitReviewAsync();
         ReviewTargetType.SelectedIndex = 0;
-        Loaded += (_, _) => _ = LoadAsync();
+        NavBookingsButton.Click += (_, _) => ShowMainView(MainClientView.Bookings);
+        NavReviewButton.Click += (_, _) => ShowMainView(MainClientView.Review);
+        NavMyReviewsButton.Click += (_, _) => ShowMainView(MainClientView.MyReviews);
+        BrandLogoHost.PointerPressed += (_, _) => SelectCatalogSlice(_catalogIsCustomizationTab);
+        CatalogTabCustom.Click += (_, _) => SelectCatalogSlice(isCustomizationTab: false);
+        CatalogTabCustomization.Click += (_, _) => SelectCatalogSlice(isCustomizationTab: true);
+        CatalogTabCustom.IsChecked = true;
+        CatalogTabCustomization.IsChecked = false;
+        Loaded += ClientDashboard_OnLoaded;
+    }
+
+    private void ClientDashboard_OnLoaded(object? sender, RoutedEventArgs e)
+    {
+        var bmp = ImageLoader.TryLoadFromBaseDirectory("Resources/Brand/logo.ico");
+        if (bmp != null)
+            BrandLogo.Source = bmp;
+        _ = LoadAsync();
+    }
+
+    private void ShowMainView(MainClientView view)
+    {
+        var catalog = view == MainClientView.Catalog;
+        CatalogPanel.IsVisible = catalog;
+        BookingsPanel.IsVisible = view == MainClientView.Bookings;
+        ReviewPanel.IsVisible = view == MainClientView.Review;
+        MyReviewsPanelHost.IsVisible = view == MainClientView.MyReviews;
+    }
+
+    private void SelectCatalogSlice(bool isCustomizationTab)
+    {
+        _catalogIsCustomizationTab = isCustomizationTab;
+        ShowMainView(MainClientView.Catalog);
+        CatalogTabCustom.IsChecked = !isCustomizationTab;
+        CatalogTabCustomization.IsChecked = isCustomizationTab;
+
+        CosplaySearchBox.IsVisible = !isCustomizationTab;
+        CosplayDirectionFilter.IsVisible = !isCustomizationTab;
+        CustomSearchBox.IsVisible = isCustomizationTab;
+        CustomDirectionFilter.IsVisible = isCustomizationTab;
+
+        CosplayServicesScroll.IsVisible = !isCustomizationTab;
+        CustomServicesScroll.IsVisible = isCustomizationTab;
     }
 
     private async Task LoadAsync()
