@@ -1,0 +1,81 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="KLALIK.App"
+             RequestedThemeVariant="Dark">
+  <Application.Resources>
+    <!-- Тёплая тёмная тема «мастерская»: янтарный акцент, stone-фон -->
+    <Color x:Key="ColorBgWindow">#FF0C0A09</Color>
+    <Color x:Key="ColorBgTitle">#FF1C1917</Color>
+    <Color x:Key="ColorBgToolbar">#FF292524</Color>
+    <Color x:Key="ColorBgElevated">#FF1F1B18</Color>
+    <Color x:Key="ColorBorder">#FF44403C</Color>
+    <Color x:Key="ColorTextPrimary">#FFF5F5F4</Color>
+    <Color x:Key="ColorTextSecondary">#FFA8A29E</Color>
+    <Color x:Key="ColorTextMuted">#FF78716C</Color>
+    <Color x:Key="ColorAccent">#FFF59E0B</Color>
+    <Color x:Key="ColorAccentHover">#FFFBBF24</Color>
+    <Color x:Key="ColorAccentForeground">#FF1C1917</Color>
+    <Color x:Key="ColorLink">#FF38BDF8</Color>
+    <Color x:Key="ColorError">#FFFB7185</Color>
+    <Color x:Key="ColorSuccess">#FF4ADE80</Color>
+
+    <SolidColorBrush x:Key="BrushBgWindow" Color="{StaticResource ColorBgWindow}" />
+    <SolidColorBrush x:Key="BrushBgTitle" Color="{StaticResource ColorBgTitle}" />
+    <SolidColorBrush x:Key="BrushBgToolbar" Color="{StaticResource ColorBgToolbar}" />
+    <SolidColorBrush x:Key="BrushBorder" Color="{StaticResource ColorBorder}" />
+    <SolidColorBrush x:Key="BrushTextPrimary" Color="{StaticResource ColorTextPrimary}" />
+    <SolidColorBrush x:Key="BrushTextSecondary" Color="{StaticResource ColorTextSecondary}" />
+    <SolidColorBrush x:Key="BrushTextMuted" Color="{StaticResource ColorTextMuted}" />
+    <SolidColorBrush x:Key="BrushAccent" Color="{StaticResource ColorAccent}" />
+    <SolidColorBrush x:Key="BrushLink" Color="{StaticResource ColorLink}" />
+    <SolidColorBrush x:Key="BrushError" Color="{StaticResource ColorError}" />
+    <SolidColorBrush x:Key="BrushOnAccent" Color="{StaticResource ColorAccentForeground}" />
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+
+    <Style Selector="Window">
+      <Setter Property="Background" Value="{DynamicResource BrushBgWindow}" />
+    </Style>
+
+    <!-- Основные кнопки — янтарь -->
+    <Style Selector="Button:not(.link):not(.chrome)">
+      <Setter Property="Background" Value="{DynamicResource BrushAccent}" />
+      <Setter Property="Foreground" Value="{DynamicResource BrushOnAccent}" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="14,8" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="Button.link">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource BrushLink}" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style Selector="Button.chrome">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource BrushTextPrimary}" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style Selector="TextBox, ComboBox">
+      <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="TabItem">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Padding" Value="16,10" />
+    </Style>
+
+    <Style Selector="ListBox">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+  </Application.Styles>
+</Application>

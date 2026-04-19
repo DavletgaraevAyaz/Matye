@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="KLALIK.MainWindow"
+        Title="Лавка Матье"
+        Width="1120"
+        Height="720"
+        MinWidth="1120"
+        MinHeight="720"
+        MaxWidth="1120"
+        MaxHeight="720"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        WindowDecorations="None"
+        Background="{DynamicResource BrushBgWindow}">
+  <DockPanel>
+    <Border DockPanel.Dock="Top"
+            Height="40"
+            Background="{DynamicResource BrushBgTitle}"
+            BorderBrush="{DynamicResource BrushAccent}"
+            BorderThickness="0,0,0,1"
+            PointerPressed="TitleBar_OnPointerPressed">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0" Spacing="10">
+          <TextBlock Text="Лавка Матье"
+                     VerticalAlignment="Center"
+                     Foreground="{DynamicResource BrushTextPrimary}"
+                     FontWeight="SemiBold"
+                     FontSize="14" />
+          <TextBlock x:Name="SubtitleText"
+                     VerticalAlignment="Center"
+                     Foreground="{DynamicResource BrushTextSecondary}"
+                     FontSize="12"
+                     Text="" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalAlignment="Stretch">
+          <Button x:Name="MinimizeButton"
+                  Classes="chrome"
+                  Content="—"
+                  Width="48"
+                  Height="40"
+                  Click="MinimizeButton_OnClick" />
+          <Button x:Name="CloseButton"
+                  Classes="chrome"
+                  Content="✕"
+                  Width="48"
+                  Height="40"
+                  Click="CloseButton_OnClick" />
+        </StackPanel>
+      </Grid>
+    </Border>
+    <ContentControl x:Name="ShellHost" />
+  </DockPanel>
+</Window>
